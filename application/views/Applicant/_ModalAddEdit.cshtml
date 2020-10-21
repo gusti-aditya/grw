@@ -1,0 +1,112 @@
+﻿@using ProjectTraining.Models;
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+       <div class="modal-header">
+            <h4 class="modal-title">
+                Add Employee
+            </h4>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-12">
+                    <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label class="control-label required" style="text-align:left">Temp Noreg</label>
+                                    <input id="hdnAddEditScreenMode" type="hidden" value="" />
+                                    <input id="hdnAddEditEmployeeId" type="hidden" value="" />
+                                    <input type="text" class="form-control" id="txtAddEditTempNoreg" 
+                                        value="" style="width:100%" maxlength="10" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="control-label required" style="text-align:left">Name</label>
+                                    <input type="text" class="form-control" id="txtAddEditName" 
+                                        value="" style="width:100%" maxlength="100" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="control-label required" style="text-align:left">Gender</label>
+                                    <select id="cmbAddEditGender" class="form-control" style="width:100%" >
+                                        <option selected="selected" value="">--Select--</option>
+                                        @if (ViewBag.Genders != null) {
+                                            foreach (SystemConfig gender in ViewBag.Genders)
+                                            { 
+                                            <option value="@gender.SYSTEM_CD">@gender.SYSTEM_VALUE</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label class="control-label required" style="text-align:left">Birth Place</label>
+                                    <input type="text" class="form-control" id="txtAddEditBirthPlace" 
+                                        value="" style="width:100%" maxlength="10" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="control-label required" style="text-align:left">Birth Date</label>
+                                    <input type="text" class="form-control" id="txtAddEditBirthDate" 
+                                        value="" style="width:100%" maxlength="100" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="control-label required" style="text-align:left">ID No/KTP</label>
+                                    <input type="text" class="form-control" id="txtAddEditIDNo" 
+                                        value="" style="width:100%" maxlength="100" />
+                                </div>
+                            </div>
+                    </div>
+                    <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label class="control-label required" style="text-align:left">Province</label>
+                                    <input type="text" class="form-control" id="txtAddEditProvice" 
+                                        value="" style="width:100%" maxlength="10" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="control-label required" style="text-align:left">City</label>
+                                    <input type="text" class="form-control" id="txtAddEditCity" 
+                                        value="" style="width:100%" maxlength="100" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="control-label required" style="text-align:left">Address</label>
+                                    <textarea id="txtAddEditAddress" style="width:100%" maxlength="100">
+                                    </textarea>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label class="control-label required" style="text-align:left">Postal Code</label>
+                                    <input type="text" class="form-control" id="txtAddEditPostalCode" 
+                                        value="" style="width:100%" maxlength="10" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="control-label required" style="text-align:left">Phone No</label>
+                                    <input type="text" class="form-control" id="txtAddPhoneNo" 
+                                        value="" style="width:100%" maxlength="100" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="control-label required" style="text-align:left">Email</label>
+                                    <input type="text" class="form-control" id="txtAddEmail" 
+                                        value="" style="width:100%" maxlength="100" />
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <div class="col-xs-12 text-right">
+                        <button type="button" id="btnSubmit" style="line-height:1" class="btn btn-sm btn-primary" 
+                            onclick="btnSaveEdit_onClick()"><i class="ace-icon fa fa-check bigger-110"></i>&nbsp;Simpan</button>
+                        <button type="reset" id="btnCancel" style="line-height:1" class="btn btn-sm btn-danger" data-dismiss="modal" onclick="btnCancel_onClick()"><i class="ace-icon fa fa-undo bigger-110"></i>&nbsp;Batal</button>
+                    </div>
+                </div>
+    </div>
+  </div>
+</div>

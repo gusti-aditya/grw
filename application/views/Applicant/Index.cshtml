@@ -1,0 +1,227 @@
+﻿@using ProjectTraining.Commons.Constants;
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Applicant";
+    
+}
+
+<div class="col-lg-12 mb-30">
+    <div class="portlet-box">
+        <div class="portlet-header flex-row flex d-flex align-items-center">
+            <div class="flex d-flex flex-column">
+                @Html.Partial("_SearchCriteria")
+            </div>
+        </div>
+        <div class="portlet-body no-padding" id="tableData">            
+            @Html.Partial("_GridView")
+        </div>
+    </div>
+    <div class="modalAdd">
+        @Html.Partial("_ModalAddEdit")
+    </div>
+</div>
+
+@section BodyScript{
+    <script type="text/javascript">
+        // Search [start]
+        function btnSearch_onClick() {
+            onSearchCriteria(1);
+        }
+
+        function onSearchCriteria(page) {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Content("~/Applicant/Search")",
+            data: {
+                tempNoreg: $("#txtSearchTempNoreg").val(),
+                name: $("#txtSearchName").val(),
+                recordPerPage: $("#recordPerPage").val(),
+                currentPage: page
+            },
+            success: function (data) {
+                $("#tableData").html(data);
+            }
+        });
+        }
+
+        /*ADD [START]*/
+        function btnAdd_onClick() {
+            setScreenToAddMode();
+            $("#modalAddEdit").modal();
+        }
+        function setScreenToAddMode() {
+            gScreenMode = '@CommonConstant.SCREEN_MODE_ADD';
+            clearAddEdit(gScreenMode);
+        }
+
+        /*Clear View Data [START]*/
+        function clearAddEdit(data) {
+
+            if (data == "@CommonConstant.SCREEN_MODE_ADD") {
+
+            $("#txtAddEditTempNoreg").val('');
+            $("#txtAddEditName").val('');
+            $("#txtAddEditBirthPlace").val('');
+            $("#txtAddEditBirthDate").val('');
+            $("#txtAddEditIDNo").val('');
+            $("#txtAddEditProvice").val('');
+            $("#txtAddEditCity").val('');
+            $("#txtAddEditAddress").val('');
+            $("#txtAddEditPostalCode").val('');
+            $("#txtAddPhoneNo").val('');
+            $("#txtAddEmail").val('');
+            $("#txtAddEditTempNoreg").prop('disabled', false);
+            $("#btnSubmit").attr('onclick', 'btnSubmitEdit_onClick("ADD");');
+            $("#btnSubmit").show();
+        }
+        else if (data == "@CommonConstant.SCREEN_MODE_EDIT") {
+            $("#txtAddEditTempNoreg").prop('disabled', true);
+            $("#btnSubmit").attr('onclick', 'btnSubmitEdit_onClick("EDIT");');
+            $("#btnSubmit").show();
+            $("#btnCancel").show();
+        }
+
+    }
+        // Search [end]
+
+        // GetByKey [Start]
+
+
+
+        function setScreenToEditMode() {
+        gScreenMode = '@CommonConstant.SCREEN_MODE_EDIT';
+        clearAddEdit(gScreenMode);
+        }
+
+        function linkEdit_onClick(applicantId) {
+            setScreenToEditMode();
+
+            var params = new Object();
+            params.APPLICANT_ID = applicantId;
+            $.ajax({
+                type: "POST",
+                url: "@Url.Content("~/Applicant/getById")",
+                contentType: 'application/json',
+                dataType: 'json',
+                traditional: true,
+                data: JSON.stringify(params),
+            success: function (returnResult) {
+                onEditGetDataSuccess(returnResult);
+            },
+            error: function (returnResult) {
+                errMsg("Error", returnResult.ErrMesgs[0]);
+            }
+        });
+    }
+
+    function onEditGetDataSuccess(returnResult) {
+        var data = returnResult.Params[0];
+        $("#modalAddEdit").modal();
+        $("#txtAddEditTempNoreg").val(DATA.TEMP_NOREG);
+        $("#txtAddEditName").val(DATA.NAME);
+        $("#txtAddEditBirthPlace").val(DATA.BIRTH_PLACE);
+        $("#txtAddEditBirthDate").val(DATA.BIRTH_DATE);
+        $("#txtAddEditIDNo").val(DATA.ID_NO);
+        $("#txtAddEditProvice").val(DATA.PROVINCE);
+        $("#txtAddEditCity").val(DATA.CITY);
+        $("#txtAddEditAddress").val(DATA.ADDRESS);
+        $("#txtAddEditPostalCode").val(DATA.POSTAL_CODE);
+        $("#txtAddPhoneNo").val(DATA.PHONE);
+        $("#txtAddEmail").val(DATA.EMAIL);
+    }
+
+        // GetByKey [End]
+
+
+        // Save & Edit [start]
+        function btnSubmitEdit_onClick(scrnmd) {
+            if (scrnmd == null)
+            {
+                errMsg("Error", "Screen mode not detected");
+                return false;
+            }
+            var tempNoreg = $("#txtAddEditTempNoreg").val();
+            if ($("#txtAddEditTeacherNumber").val() == "")
+                alert('Please input temporary no registration!');
+            else if ($("#txtAddEditName").val() == "")
+                alert('Please input applicant name!');
+            else if ($("#cmbAddEditGender").val() == "")    
+                alert('Invalid Gender!');
+            else if ($("#txtAddEditBirthPlace").val() == "")
+                alert('Please Input the birth place!');
+            else if ($("#txtAddEditBirthDate").val() == "")
+                alert('Invalid Birth Date!');
+            else if ($("#txtAddEditIDNo").val() == "")
+                alert('Invalid ID No!');
+            else {
+                //alert(scrnmd);
+                var params = new Object();
+                var listDetail = [];
+                params.screenMode = scrnmd;
+                params.APPLICANT_ID = $("#txtHdnAddEditApplicantId").val();
+                params.TEMP_NOREG = $("#txtAddEditTempNoreg").val();
+                params.NAME = $("#txtAddEditName").val();
+                params.GENDER = $("#cmbAddEditGender").val();
+                params.BIRTH_PLACE = $("#txtAddEditBirthPlace").val();
+                params.BIRTH_DATE = $("#txtAddEditBirthDate").val();
+                params.ID_NO = $("#txtAddEditIDNo").val();
+                params.PROVINCE = $("#txtAddEditProvice").val();
+                params.CITY = $("#txtAddEditCity").val();
+                params.ADDRESS = $("#txtAddEditAddress").val();
+                params.POSTAL_CODE = $("#txtAddEditPostalCode").val();
+                params.PHONE = $("#txtAddPhoneNo").val();
+                params.EMAIL = $("#txtAddEmail").val();
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Content("~/Applicant/AddEditSave")",
+                contentType: 'application/json',
+                dataType: 'json',
+                traditional: true,
+                data: JSON.stringify(params),
+                success: function (returnResult) {
+                    if (returnResult.Result == 'ERROR') {
+                        errMsg("Error", returnResult.ErrMesgs[0]);
+                    }
+                    else
+                    {
+                        successMsg("Insert/Update Applicant", "Data has been posted successfully");
+                    }
+                },
+                error: function (returnResult) {
+                    alert('Action error');
+                }
+            });
+            }
+        }
+
+
+        //delete start
+
+        function btnDelete_OnClick(applicantId) {
+                var params = new Object();
+                params.APPLICANT_ID = applicantId;
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Content("~/Applicant/AddEditSave")",
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    traditional: true,
+                    data: JSON.stringify(params),
+                    success: function (returnResult) {
+                        if (returnResult.Result == 'ERROR') {
+                            errMsg("Error", returnResult.ErrMesgs[0]);
+                        }
+                        else {
+                            successMsg("Delete Applicant", "Data has been deleted successfully");
+                        }
+                    },
+                    error: function (returnResult) {
+                        alert('Action error');
+                    }
+                });
+            
+        }
+        //delete end
+    </script>
+}

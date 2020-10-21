@@ -1,0 +1,51 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Applicant";
+}
+
+@* 
+<div class="row">
+<div id="searchHeader">
+    @Html.Partial("_SearchCriteria")
+</div>
+</div>
+
+*@
+<div class="col-lg-12 mb-30">
+    <div class="portlet-box">
+        <div class="portlet-header flex-row flex d-flex align-items-center">
+            <div class="flex d-flex flex-column">
+               
+            </div>
+        </div>
+        <div class="portlet-body no-padding" id="tableData">            
+           
+        </div>
+    </div>
+</div>
+
+@section BodyScript{
+    <script type="text/javascript">
+        // Search [start]
+        function btnSearch_onClick() {
+            onSearchCriteria(1);
+        }
+
+        function onSearchCriteria(page) {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Content("~/Applicant/Search")",
+            data: {
+                tempNoreg: $("#txtSearchTempNoreg").val(),
+                name: $("#txtSearchName").val(),
+                recordPerPage: $("#recordPerPage").val(),
+                currentPage: page
+            },
+            success: function (data) {
+                $("#tableData").html(data);
+            }
+        });
+    }
+    // Search [end]
+    </script>
+}

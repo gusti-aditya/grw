@@ -1,0 +1,88 @@
+﻿@using ProjectTraining.Models;
+@using ProjectTraining.Commons.Models;    
+
+<style>
+    .text-center {
+    text-align:center;
+    }
+</style>
+<div class="">
+    <div class="table-responsive">  
+      <div class="portlet-body no-padding">
+        <table class="table table-bordered mb-0">
+            <thead>
+                <tr>
+                    <th rowspan="2" style="width:30%">Action</th>
+                    <th rowspan="2" class="text-center">Temp Noreg</th>
+                    <th rowspan="2" class="text-center">Name</th>
+                    <th rowspan="2" class="text-center">Gender</th>
+                    <th rowspan="2" class="text-center">Email</th>
+                    <th rowspan="2" class="text-center">Phone Number</th>
+                    <th rowspan="2" class="text-center">Birth Date</th>
+                    <th rowspan="2" class="text-center">Birth Place</th>
+                    <th rowspan="2" class="text-center">ID No</th>
+                    <th rowspan="1" colspan="4" style="text-align:center">Home Address</th>
+                </tr>
+                <tr>
+                    <th width="10%;" class="text-center">Address</th>
+                    <th width="10%;" class="text-center">City</th>
+                    <th width="10%;" class="text-center">Province</th>
+                    <th width="10%;" class="text-center">Postal Code</th>
+                </tr>
+            </thead>
+            <tbody>@if (ViewBag.Applicants == null || ViewBag.Applicants.Count == 0)
+                   {
+                <tr>
+                    <td align="center" colspan="3">Data Tidak Ditemukan</td>
+                </tr>
+                   }
+                   else
+                   {
+                       int a = 0;
+                       foreach (Applicant obj in ViewBag.Applicants)
+                       { 
+                       <tr>
+                           <td scope="row"><a href="#" onclick="btnDelete_OnClick('@obj.APPLICANT_ID')" class="btn-icon-o btn-danger btn-icon-sm mr-2 mb-2">
+                                                <i class="fa fa-trash"></i>
+                                            </a> ||
+                                            <a href="#" onclick="btnDelete_OnClick('@obj.APPLICANT_ID')" class="btn-icon-o btn-primary btn-icon-sm mr-2 mb-2">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                            </td>
+                           <td>@obj.TEMP_NOREG</td>
+                           <td>@obj.NAME</td>
+                           <td>@obj.GENDER</td>
+                           <td>@obj.EMAIL</td>
+                           <td>@obj.PHONE</td>
+                           <td>@obj.BIRTH_DATE_STR</td>
+                           <td>@obj.BIRTH_PLACE</td>
+                           <td>@obj.ID_NO</td>
+                           <td>@obj.ADDRESS</td>
+                           <td>@obj.CITY</td>
+                           <td>@obj.PROVINCE</td>
+                           <td>@obj.POSTAL_CODE</td>
+                       </tr>
+                       }
+                   }
+            </tbody>
+            
+           
+        </table>
+        </div>
+    </div>
+</div>
+
+@Html.Partial("_PaginatorBottom", (PagingModel)ViewData["Paging"])
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#checkall").click(function () {
+            $(".grid-checkbox-body").prop("checked", $("#checkall").is(":checked"));
+        });
+
+        $(".grid-checkbox-body").click(function () {
+            $("#checkall").prop("checked", $('.grid-checkbox-body:not(#checkall)').not(':checked').length == 0);
+        });
+    });
+</script>
