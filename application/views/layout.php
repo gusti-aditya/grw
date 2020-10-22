@@ -41,13 +41,6 @@ $isi='';
                                         </span>
                                     </a>
                             </li><!--Menu-item-->
-                            <li><i class="icon-Add nav-thumbnail"></i>
-                                    <a href="<?php echo('Buyer')?>">
-                                        <span class="nav-text">
-                                            Buyer
-                                        </span>
-                                    </a>
-                            </li><!--Menu-item-->
                         </ul>
                     </div>
                     <!-- aside content end-->
