@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
  
-class Buyer extends CI_Controller
+class Buyer extends MY_Secure_Controller
 {
 	public function __construct()
 	{
@@ -40,8 +40,16 @@ class Buyer extends CI_Controller
         $this->pagination->initialize($config);	
         //$config = $this->Pagination_Config->GetPaginationConfig($totalData,10);
         $content["row"] = $this->Model_buyer->getAll(10,$from);
-        	
+        $content["dataBuyer"] = $this->Model_buyer->getAll(10,$from);
+        $content["dataKota"] = $this->Model_buyer->getKota();
+        $content["dataProvinsi"] = $this->Model_buyer->getProvinsi();
         $this->load->view('layout',$content);
+    }
+
+    public function getCityById(){
+        $regionId = $this->input->post('regionId'); # add this
+        $data = $this->Model_buyer->getKotaById($regionId);
+        echo json_encode($data);
     }
 }
  

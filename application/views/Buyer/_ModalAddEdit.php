@@ -1,5 +1,5 @@
-<div class="modal fade bd-example-modal-md" id="modalAddEdit" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-md">
+<div class="modal fade bd-example-modal-lg" id="modalAddEdit" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
        <div class="modal-header">
             <h4 class="modal-title">
@@ -15,7 +15,7 @@
                                     <label class="control-label required" style="text-align:left">Nama Depan</label>
                                     <input id="hdnAddEditScreenMode" type="hidden" value="" />
                                     <input id="hdnAddEditId" type="hidden" value="" />
-                                    <input type="text" class="form-control" id="txtAddEditFristName" 
+                                    <input type="text" class="form-control" id="txtAddEditFirstName" 
                                             value="" style="width:100%" maxlength="100" />
                                 </div>
                                 <div class="col-md-6">
@@ -26,49 +26,51 @@
                             </div>
                     </div>
                     <div class="form-group">
-                         <label for="alamat" class="control-label required" style="text-align:left">Alamat</label>
-                            <div class="md-form mb-4 active-pink-textarea">
-                                <textarea id="alamat" class="md-textarea form-control" rows="3"></textarea>
-
-                            </div>
-                    </div>
-                    <div class="form-group">
                         <div class="row">
                             <div class="col-md-6">
-                                <label for="alamat" class="control-label required" style="text-align:left">Propinsi</label>
-                                <select class="form-control" required>
-                                <option>option 1</option>
-                                <option>option 2</option>
-                                <option>option 3</option>
-                                <option>option 4</option>
-                                <option>option 5</option>
-                                </select>
+                                        <label class="control-label required" style="text-align:left">Alamat</label>
+                                        <textarea id="txtAddEditAddress" class="form-control">
+                                        
+                                        </textarea>
                             </div>
-
                             <div class="col-md-6">
-                            <label for="alamat" class="control-label required" style="text-align:left">Kode Pos</label>
-                                <input type="number" class="form-control" id="txtAddEditKodePos" 
-                            value="" style="width:100%" maxlength="100" / required>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-md-12">
-                            <label for="telepom" class="control-label required" style="text-align:left">No Telepon</label>
-                                <input type="number" class="form-control"  
-                            value="" id="txtAddEditTelepon" style="width:100%" maxlength="100" / required="">
-                            </div>
+                                    <label class="control-label required" style="text-align:left">Nomor Telepon</label>
+                                    <input type="text" class="form-control" id="txtAddEditPhoneNo" 
+                                            value="" style="width:100%" maxlength="100" />
+                                </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-md-12">
-                            <label for="telepom" class="control-label required" style="text-align:left">Email</label>
-                                <input type="email" class="form-control"  
-                            value="" id="txtAddEditTelepon" style="width:100%" maxlength="100" / required="">
+                            <div class="col-md-6">
+                                        <label class="control-label required" style="text-align:left">Email</label>
+                                        <input type="text" class="form-control" id="txtAddEditEmail" 
+                                            value="" style="width:100%" maxlength="100" />
                             </div>
+                            <div class="col-md-6">
+                                    <label class="control-label required" style="text-align:left">Provinsi</label>
+                                    <select  class="form-control" id="cbAddEditRegion">
+                                        <option value="">--Pilih--</option>
+                                        <?php if($dataProvinsi !=FALSE):  foreach ($dataProvinsi as $dkt): ?>
+                                            <option value="<?php echo $dkt->id_prov; ?>"><?php echo $dkt->nama; ?></option>
+                                        <?php endforeach; endif; ?>
+                                    </select>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                        <label class="control-label required" style="text-align:left">Kode Pos</label>
+                                        <input type="text" class="form-control" id="txtAddEditPostalCode" 
+                                            value="" style="width:100%" maxlength="100" />
+                            </div>
+                            <div class="col-md-6">
+                                    <label class="control-label required" style="text-align:left">Kota</label>
+                                    <select  class="form-control" id="cbAddEditCity" disabled>
+                                        <option value="">--Pilih--</option>
+                                    </select>
+                                </div>
                         </div>
                     </div>
                    
@@ -86,4 +88,3 @@
     </div>
   </div>
 </div>
-
