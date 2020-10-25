@@ -6,53 +6,37 @@
 <div style="width:100%;">
     <div class="table-responsive">  
       <div class="portlet-body no-padding">
-        <table class="table table-bordered mb-0">
-            <thead>
-                <tr>
-                    <th rowspan="2" style="width:30%">Action</th>
-                    <th rowspan="2" class="text-center">Nama</th>
-                    <th rowspan="2" class="text-center">Alamat</th>
-                    <th rowspan="2" class="text-center">Nomor Telepon</th>
-                    <th rowspan="2" class="text-center">Email</th>
-                    <th rowspan="2" class="text-center">Kota</th>
-                    <th rowspan="2" class="text-center">Provinsi</th>
-                    <th rowspan="2" class="text-center">Kode Pos</th>
-            </thead>
-            <tbody>
-            <?php if($dataBuyer !=FALSE):  foreach ($dataBuyer as $brt): ?>
-                       <tr>
-                           <td scope="row"><a href="#" onclick="btnDelete_OnClick('<?php echo $brt->dataBuyer; ?>')" class="btn-icon-o btn-danger btn-icon-sm mr-2 mb-2">
-                                                <i class="fa fa-trash"></i>
-                                            </a>||
-                                            <a href="#" onclick="btnEdit_OnClick('<?php echo $brt->dataBuyer; ?>')" class="btn-icon-o btn-primary btn-icon-sm mr-2 mb-2">
-                                                <i class="fa fa-edit"></i>
-                                            </a>
-                            </td>
-                           <td><?php echo $brt->FIRST_NAME; ?></td>
-                           <td><?php echo $brt->LAST_NAME; ?></td>
-                           <td><?php echo $brt->ADDRESS; ?></td>
-                           <td><?php echo $brt->PHONE_NO; ?></td>
-                           <td><?php echo $brt->EMAIL; ?></td>
-                           <td><?php echo $brt->CITY; ?></td>
-                           <td><?php echo $brt->PROVINCE; ?></td>
-                           <td><?php echo $brt->POSTAL_CODE; ?></td>
-                           </tr>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <tr>
-                    <td align="center" colspan="5">Tidak ada data</td>
-                </tr>
-            <?php endif; ?>
-            </tbody>
-        </table>
-                <div class="dataTables_paginate paging_simple_numbers" id="data-table_paginate">
-                <nav aria-label="Page navigation example">
-                <?php 
-                echo $this->pagination->create_links();
-                ?>
-                </nav>
-                
-                </div>
+      <table id="tablenya" class="table table-bordered table-striped table-hover">
+     <thead>
+        <tr>
+            <td>FirstName</td>
+            <td>LastName</td>
+            <td>Address</td>
+            <td>Phone No</td>
+            <td>Email</td>
+            <td>City</td>
+            <td>Province</td>
+            <td>Postal Code</td>
+        </tr>
+     </thead>
+     <tbody>
+
+     <?php foreach($datanya as $brt){ ?>
+     <tr>
+            <td><?php echo $brt->FIRST_NAME; ?></td>
+            <td><?php echo $brt->LAST_NAME; ?></td>
+            <td><?php echo $brt->ADDRESS; ?></td>
+            <td><?php echo $brt->PHONE_NO; ?></td>
+            <td><?php echo $brt->EMAIL; ?></td>
+            <td><?php echo $brt->CITY; ?></td>
+            <td><?php echo $brt->PROVINCE; ?></td>
+            <td><?php echo $brt->POSTAL_CODE; ?></td>
+    </tr>
+    <?php } ?>
+
+     </tbody>
+     </table>
+        
         </div>
     </div>
 </div>

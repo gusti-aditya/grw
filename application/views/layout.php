@@ -41,6 +41,20 @@ $isi='';
                                         </span>
                                     </a>
                             </li><!--Menu-item-->
+                            <li><i class="icon-Add nav-thumbnail"></i>
+                                    <a href="<?php echo('Kavling')?>">
+                                        <span class="nav-text">
+                                            Kavling
+                                        </span>
+                                    </a>
+                            </li><!--Menu-Kavling-->
+                            <li><i class="icon-Add nav-thumbnail"></i>
+                                    <a href="<?php echo('Order')?>">
+                                        <span class="nav-text">
+                                            Order
+                                        </span>
+                                    </a>
+                            </li><!--Menu-Kavling-->
                         </ul>
                     </div>
                     <!-- aside content end-->

@@ -7,7 +7,7 @@
                                         </div>
                                     </div>
                                     <div class="portlet-body">
-                                        <form  action="Berita/uploadDataBuyer" class="dropzone" id="dropzoneForm" enctype="multipart/form-data">
+                                        <form  action="Buyer/uploadExcel" class="dropzone" id="dropzoneForm" enctype="multipart/form-data">
                                             <div class="fallback">
                                                 <input name="file" type="file" multiple />
                                             </div>

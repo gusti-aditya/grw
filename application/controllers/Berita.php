@@ -119,7 +119,7 @@ class Berita extends MY_Secure_Controller
         $config['upload_path']          = './assets/images/';
         $config['allowed_types']        = 'gif|jpg|png';
         $config['file_name']            = $_FILES['file']['name'];
-        $config['fields'] = 'image';
+        $config['fields']               = 'image';
         $config['overwrite']			= true;
         $config['max_size']             = 10024; // 10MB
         // $config['max_width']            = 1024;
@@ -133,6 +133,8 @@ class Berita extends MY_Secure_Controller
         
         echo json_encode($uploadData);
     }
+
+    
 
 }
  

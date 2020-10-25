@@ -5,6 +5,7 @@ class Home extends MY_Secure_Controller
     public function index()
     {
 		$content['isi']='';
+		$content['title']='';
         $this->load->view('layout',$content);
     }
 }

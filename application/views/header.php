@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Admin Homepage</title>
+    <title>Admin Homepage <?php if (isset($title))echo $title; else echo ''; ?></title>
 
     <!-- Required meta tags -->
     <meta charset="utf-8">

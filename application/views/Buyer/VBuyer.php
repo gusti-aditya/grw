@@ -1,6 +1,9 @@
 
  <link href="assets/lib/dropzone/dropzone.css" rel="stylesheet"> 
  <link href="assets/lib/dt-picker/jquery.datetimepicker.min.css" rel="stylesheet">
+ <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.css"/>
+ <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+
 <div class="page-title">
               <div class="title_left">
                 <h3>Buyer</h3>
@@ -14,7 +17,7 @@
               <?php $this->load->view('Buyer/_SearchCriteria');?>
             </div>
         </div>
-        <div class="portlet-body no-padding" id="tableData">
+        <div class="portlet-body" id="tableData">
             <?php $this->load->view('Buyer/_Gridview');?>
         </div>
     </div>
@@ -29,9 +32,18 @@
 <script type="text/javascript" src="assets/Content/js/sweetalert2.min.js"></script>
 <script type="text/javascript" src="assets/lib/dt-picker/jquery.datetimepicker.full.min.js"></script>
 <script type="text/javascript" src="assets/lib/dropzone/dropzone.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.js"></script> 
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
 <script type="text/javascript">
         // Search [start]
+        $(document).ready(function() {
+            $('#tablenya').DataTable();
+        });
 
+        $(document).ready(function() {
+            $('#select2').select2();
+        });
 
         $("#cbAddEditRegion").change(function(){
             waitMsg();
